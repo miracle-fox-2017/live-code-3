@@ -4,9 +4,7 @@ const Model   = require('../models/movieModel')
 const prod    = require('../models/prodHouse')
 
 router.get('/', (req, res)=>{
-	// res.send('masuk sini')
 	Model.getAllMovie().then(result=>{
-		// res.send(result)
 		res.render('movie', {movies : result})
 	}).catch(err=>{
 		console.log(err);
