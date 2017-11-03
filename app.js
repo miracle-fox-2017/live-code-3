@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/movies', function (req, res) {
-	let sql = `SELECT Movies.id as movie_id, Movies.name as movie_name, Movies.released_year, Movies.genre, ProductionHouses.id as prodId, ProductionHouses.name_prodHouse FROM Movies LEFT JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`;
+	let sql = `SELECT Movies.id as movie_id, Movies.name as movie_name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse FROM Movies LEFT JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`;
 
   	db.all(sql, (err, rows) => {
   		res.render('movies', { allMovie: rows });
