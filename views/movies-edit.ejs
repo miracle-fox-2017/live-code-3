@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Halaman Movies</h1>
+    <form class="" action="index.html" method="post">
+      <input type="text" name="movies" value="<%=movie.name%>">
+      <input type="text" name="released" value="<%=movie.released_year%>">
+      <select class="" name="genre">
+        <option value="action">action</option>
+        <option value="comedy">comedy</option>
+        <option value="drama">drama</option>
+        <option value="horor">horor</option>
+      </select>
+      <select class="" name="prodhouse">
+        <%prodHouse.forEach(p => {%>
+          <option value="<%=p.id%>"><%=p.name_prodHouse%></option>
+        <%})%>
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
