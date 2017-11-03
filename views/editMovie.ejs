@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit</title>
+  </head>
+  <body>
+    <form action="/movies/edit/<%=rows[0].id%>" method="post">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Released Year</th>
+          <th>Genre</th>
+          <th>Production House</th>
+        </tr>
+          <%rows.forEach((row) => { %>
+            <tr>
+            <td><input type="text" name="name" value="<%=row.name%>"></td>
+            <td><input type="text" name="released_year" value="<%=row.released_year%>"></td>
+            <td><select name="genre">
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="horror">Horror</option>
+                </select></td>
+            <td><select name="genre">
+            <%prodHouses.forEach((prodHouse) => { %>
+              <option value="<%=prodHouse.name_prodHouse%>"><%=prodHouse.name_prodHouse%></option>
+            <%})%>
+            </td>
+            </tr>
+          <%})%>
+          <tr>
+            <input type="submit" value="Edit">
+          </tr>
+      </table>
+    </form>
+    
+  </body>
+</html>
