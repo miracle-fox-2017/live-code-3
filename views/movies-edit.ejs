@@ -6,19 +6,25 @@
   </head>
   <body>
     <h1>Halaman Movies</h1>
-    <form class="" action="index.html" method="post">
+    <form class="" action="/movies/edit/<%=movie.id%>" method="post">
       <input type="text" name="movies" value="<%=movie.name%>">
       <input type="text" name="released" value="<%=movie.released_year%>">
       <select class="" name="genre">
-        <option value="action">action</option>
-        <option value="comedy">comedy</option>
-        <option value="drama">drama</option>
-        <option value="horor">horor</option>
+        <%let genre = ['action','comedy','drama','horor']
+          genre.forEach((g,i) => {
+            if(movie.genre == genre[i]){%>
+              <option value="<%=genre[i]%>" selected><%=genre[i]%></option>
+        <%}else{%>
+              <option value="<%=genre[i]%>"><%=genre[i]%></option>
+        <%}})%>
       </select>
       <select class="" name="prodhouse">
-        <%prodHouse.forEach(p => {%>
+        <%prodHouse.forEach(p => {
+          if(movie.prodHouseId == p.id){%>
+            <option value="<%=p.id%>" selected><%=p.name_prodHouse%></option>
+        <%}else{%>
           <option value="<%=p.id%>"><%=p.name_prodHouse%></option>
-        <%})%>
+        <%}})%>
       </select>
       <input type="submit" value="Submit">
     </form>
