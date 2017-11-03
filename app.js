@@ -1,12 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-app.set('view engine', 'ejs');  
-
-// parse application/x-www-form-urlencoded
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
 app.use(bodyParser.json())
 
 const movie = require('./routes/movie')

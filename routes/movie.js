@@ -1,12 +1,11 @@
 var express = require('express')
 var router = express.Router()
-var Movie = require('./../models/movie')
-var ProdHouse = require('./../models/prodHouse')
+var Movie = require('./../models/modelMovie')
+var ProdHouse = require('./../models/modelProdHouse')
 
 
 router.get('/', function (req, res) {
     Movie.findAll().then((dataMovies) => {
-
         res.render('movie', { dataMovies: dataMovies })
     }).catch((reason) => {
         res.send(reason)
@@ -32,4 +31,5 @@ router.post('/edit/:id', function (req, res) {
         res.send(reason)
     })
 })
+
 module.exports = router

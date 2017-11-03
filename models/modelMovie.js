@@ -32,7 +32,7 @@ class Movie {
 
     static updateData(id, newData) {
         return new Promise((resolve, reject) => {
-            let query = `update Movies set name = "${newData.name}", released_year = ${newData.year}, genre = "${newData.genre}", prodHouseId = ${newData.prodHouseId} where id = ${id}`
+            let query = `update Movies set name = "${newData.name}", released_year = ${newData.released_year}, genre = "${newData.genre}", prodHouseId = ${newData.prodHouseId} where id = ${id}`
             db.run(query, function (err) {
                 if (err) {
                     reject(err)
