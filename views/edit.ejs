@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EDIT</title>
+</head>
+<body>
+	<h1> HALAMAN EDIT</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th> NAME MOVIE </th>
+				<th> Released Year </th>
+				<th> Genre </th>
+				<th> Production House </th>
+			</tr>	
+		</thead>
+		<tbody>
+			<form action="movies/edit/" method="post">
+			<tr>
+				<td><input type="text" name="name" placeholder=" <%= data.name %> "> </td>
+				<td><input type="text" name="released_year" placeholder=" <%= data.released_year %> "></td>
+				<td><input type="text" name="genre" placeholder=" <%= data.genre %> "></td>
+				<td><input type="text" name="name_prodHouse" placeholder=" <%= data.name_prodHouse %> "></td>
+				<td><input type="submit" value="submit"></td>
+			</tr>
+			</form>
+		</tbody>		
+	</table>	
+</body>
+</html>
