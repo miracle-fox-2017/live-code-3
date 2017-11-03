@@ -14,16 +14,17 @@ router.get('/',(req, res)=>{
 })
 router.get('/edit/:id', (req, res)=>{
   Movie.getById(req.params.id)
-    .then(datamovie=>{
-       ProdHouses.findAll(dataHouses=>{
-        res.render('editMovie', {datamovie:datamovie,dataHouses:dataHouses})
-      })
-
+  .then(datamovie=>{
+    console.log("----",datamovie);
+    ProdHouses.findAll()
+    .then(dataHouses => {
+      res.render('editMovie', {datamovie:datamovie,dataHouses:dataHouses})
     })
-      .catch(err=>{
-        console.log(err);
-        res.send(err)
-      })
+  })
+  .catch(err=>{
+    console.log(err);
+    res.send(err)
+  })
 })
 
 router.post('/edit/:id',(req, res)=>{

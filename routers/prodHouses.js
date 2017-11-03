@@ -4,14 +4,13 @@ const ProdHouses = require('../models/prodHouses');
 
 router.get('/', (req, res)=>{
 
-ProdHouses.findAll()
+  ProdHouses.findAll()
   .then(dataProds=>{
     res.render('productionHouse',{dataProds:dataProds})
   })
-    .catch(err=>{
-      res.send(err)
-    })
-
+  .catch(err=>{
+    res.send(err)
+  })
 })
 
 module.exports = router
