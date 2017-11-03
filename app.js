@@ -3,6 +3,10 @@ const app = express();
 // const ejs = require('ejs');
 const bodyParser = require('body-parser');
 
+// Router
+// const movieRouter = require('./routers/movie-route');
+// app.use('/movies', movieRouter); 
+
 const sqlite3 = require('sqlite3').verbose()
 let db = new sqlite3.Database('./db/movie.db');
 
@@ -24,23 +28,27 @@ app.get('/movies', function (req, res) {
 })
 
 app.get('/movies/edit/:id', function (req, res) {
-	let sql = `SELECT * FROM Movies WHERE id = ${req.params.id};`;
+	let data = req.params;
+
+	let sql = `SELECT * FROM Movies WHERE id = ${data.id};`;
 
   	db.get(sql, (err, rows) => {
   		db.all('select * from ProductionHouses', (err, allProd) => {
-  			db.all('select * from Movies', (err, allMovie) => {
-  				res.render('edit-movies', {movie: rows, allHouse: allProd, allMovie: allMovie});
-  			})
+  			res.render('edit-movies', {movie: rows, allHouse: allProd});
   		});
   	})	
 	
 })
 
 app.post('/movies/edit/', function (req, res) {
-	db.run(`UPDATE Movies SET name = "${req.body.name}", released_year = "${req.body.released_year}", genre = "${req.body.genre}", prodHouseId = "${+req.body.prodHouseId}" WHERE id = ${req.body.id}`, (err, alldata) => {
+	let data = req.body;
+
+	db.run(`UPDATE Movies SET name = "${data.name}", released_year = "${data.released_year}", genre = "${data.genre}", prodHouseId = "${+data.prodHouseId}" WHERE id = ${data.id}`, (err, alldata) => {
 		res.redirect('/movies');
 	});
 })
+
+
 
 app.get('/prodHouses', function (req, res) {
   let sql = 'SELECT * from ProductionHouses';
@@ -48,10 +56,8 @@ app.get('/prodHouses', function (req, res) {
   	
   	res.render('prodhouse', {allProdHouse: rows});
   })
-
-  // res.render('prodhouse')
 })
 
 app.listen(3001, function () {
-  console.log('Example app listening on port 3000!')
+  console.log('Example app listening on port 3001!')
 })

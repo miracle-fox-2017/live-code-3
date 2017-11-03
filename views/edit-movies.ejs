@@ -7,7 +7,7 @@
 <body>
 	
 	<form action="/movies/edit/" method="POST">
-		<input type="hidden" id="id" name="id" value="<%= movie.id %>">
+		  <input type="hidden" id="id" name="id" value="<%= movie.id %>">
   		<input type="text" id="name" name="name" placeholder="name" value="<%= movie.name %>">
   		<input type="text" id="released_year" name="released_year" placeholder="released_year" value="<%= movie.released_year %>">
   		<select name="genre" id="genre">
