@@ -29,7 +29,29 @@ class Movie{
 	}
 
 	static getMovieById(data){
-		
+
+		return new Promise((resolve, reject) => {
+			db.get(`select * from Movies where id = ${data}`, (err, result)=>{
+				if(err){
+					reject(err)
+				}else{
+					resolve(result)
+				}
+			})
+		});	
+	}
+
+	static updateMovieById(data){
+
+		return new Promise((resolve, reject) => {
+			db.run(`update Movies set name = "${data.name}", released_year = "${data.year}", genre = "${data.genre}", prodHouseId = "${data.prodHouse}" where id = ${data.id}`, (err)=>{
+				if(!err){
+					resolve()
+				}else{
+					reject(err)
+				}
+			})
+		});
 	}
 }
 

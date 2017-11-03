@@ -39,17 +39,17 @@ app.use('/prodHouses', prod)
 // 	})
 // })
 
-app.get('/movies/edit/:id', (req, res)=>{
-	db.get(`select Movies.*, P.name_prodHouse from Movies left join ProductionHouses P on Movies.prodHouseId = P.id where Movies.id = ${req.params.id}`, (err, result)=>{
-		if(!err){
-			db.all(`select id, name_prodHouse from ProductionHouses`, (err, rows)=>{
-				let genre = ['action','comedy','drama','horor']
-				res.render('editMovie', {movie : result, prodHouses : rows, genre : genre})	
-			})
-			// res.send(result)		
-		}
-	})
-})
+// app.get('/movies/edit/:id', (req, res)=>{
+// 	db.get(`select Movies.*, P.name_prodHouse from Movies left join ProductionHouses P on Movies.prodHouseId = P.id where Movies.id = ${req.params.id}`, (err, result)=>{
+// 		if(!err){
+// 			db.all(`select id, name_prodHouse from ProductionHouses`, (err, rows)=>{
+				
+// 				res.render('editMovie', {movie : result, prodHouses : rows, genre : genre})	
+// 			})
+// 			// res.send(result)		
+// 		}
+// 	})
+// })
 
 app.post('/movies/edit/:id', (req, res)=>{
 	// console.log(req.body);
