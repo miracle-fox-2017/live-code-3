@@ -20,13 +20,13 @@ app.get('/prodhouses', function (req, res) {
 })
 
 app.get('/movies', function (req, res) {
-  db.all(`SELECT * FROM Movies INNER JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`, (err, rows) => {
+  db.all(`SELECT Movies.id, Movies.name, Movies.released_year, Movies.genre, ProductionHouses.id AS prodID, ProductionHouses.name_prodHouse FROM Movies INNER JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`, (err, rows) => {
     res.render('movies', {rows});
   })
 })
 
 app.get(`/movies/edit/:id`, (req, res) => {
-  db.all(`SELECT * FROM Movies INNER JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id WHERE Movies.id = ${req.params.id}`, (err, rows) => {
+  db.all(`SELECT Movies.id, Movies.name, Movies.released_year, Movies.genre, ProductionHouses.id AS prodID, ProductionHouses.name_prodHouse FROM Movies INNER JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id WHERE Movies.id = ${req.params.id}`, (err, rows) => {
     db.all(`SELECT * FROM ProductionHouses`, (err, prodHouses) => {
       res.render('editMovie', {rows : rows, prodHouses:prodHouses})
     })
@@ -34,8 +34,8 @@ app.get(`/movies/edit/:id`, (req, res) => {
 })
 
 app.post(`/movies/edit/:id`, (req, res) => {
-  db.run(`ALTER TABLE Movies SET name = ${req.body.name}, released_year = ${req.body.released_year}, genre = ${req.body.genre}`)
-  // db.run(`ALTER TABLE`)
+  db.run(`UPDATE Movies SET name = "${req.body.name}", released_year = "${req.body.released_year}", genre = "${req.body.genre}", prodHouseId = ${req.body.name_prodHouse}  WHERE id = "${req.params.id}"`)
+  res.redirect('/movies');
 })
 
 
