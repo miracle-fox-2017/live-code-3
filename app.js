@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('./db/movie.db');
 
 
 app.set('views', './views') // specify the views directory
@@ -12,11 +14,22 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/movie',(req,res)=>{
-  res.render('movie')
+  db.all(`SELECT * FROM Movies`,(err,row)=>{
+  db.all(`SELECT * FROM ProductionHouse`,(err,rows)=>{
+    // res.send(rows);
+    res.render('movie',{movie : row, prod : rows})
+  })
+})
+  // res.send('nasnskn')
+  // res.render('movie',{})
 })
 
-app.get('/prodHouse',(req,res)=>{
-  res.render('prod')
+app.get('/prodHouses',(req,res)=>{
+  db.all(`SELECT * FROM ProductionHouses`,(err,rows)=>{
+    // console.log(rows);
+
+      res.render('productionHouse',{rows})
+  })
 })
 
 
