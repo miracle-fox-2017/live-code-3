@@ -15,9 +15,9 @@ app.use(bodyParser.json())
 
 
 //routing
-let index  = require('/routes/index')
-let movies = require('/routes/movies')
-let prodHouses = require('/routes/prodHouses')
+let index  = require('./routes/index')
+let movies = require('./routes/movies')
+let prodHouses = require('./routes/prodHouses')
 
 
 app.use('/', index)
