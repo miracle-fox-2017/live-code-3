@@ -8,9 +8,10 @@
 </head>
 <body>
     <p>Halaman Movies</p>
-    <table>
+    <table border="1">
         <tr>
             <td>No</td>
+            <td>Movie</td>
             <td>Released Year</td>
             <td>Genre</td>
             <td>Production House</td>
@@ -26,6 +27,9 @@
             <tr>
                 <td>
                     <%= no %>
+                </td>
+                <td>
+                    <%= rows.name %>
                 </td>
                 <td>
                     <%= rows.released_year %>
