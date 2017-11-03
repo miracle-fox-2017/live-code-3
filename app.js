@@ -29,7 +29,7 @@ app.get('/edit/:id', function(req, res) {
 })
 
 app.post('/edit/:id', function(req, res){
-  db.run(`INSERT INTO Movies (name, released_year, genre, prodHousId) VALUES('${req.body.name}','${req.body.released_year}','${req.body.genre}'
+  db.run(`INSERT INTO Movies (name, released_year, genre, prodHousId) VALUES('${req.body.name}','${req.body.released_year}','${req.body.genre}',
   '${req.body.prodHousId}')`, (err, rows) =>{
     res.redirect('/movies')
   })
