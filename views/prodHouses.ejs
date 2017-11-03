@@ -1,16 +1,24 @@
-<html lang="en">
-<head>
-  <title>Halaman Prod. House</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-
+<%-include('./partials/header')%>
 
 <h2>Halaman Prod. House</h2>
 
-</body>
-</html>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%rows.forEach(prod =>{%>
+      <tr>
+        <td><%=prod.name_prodHouse%></td>
+        <td><%=prod.origin_city%></td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+
+<%-include('./partials/footer')%>
