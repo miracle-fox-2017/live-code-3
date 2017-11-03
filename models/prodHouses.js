@@ -15,6 +15,18 @@ class ProdHouse{
     })
   }
 
+  static findByid(reqparams){
+    return new Promise(function(resolve,reject){
+      db.all(`select * from ProductionHouses where id='${reqparams.id}'`,function(err,data_Ph){
+        if(!err){
+          resolve(data_Ph)
+        }else{
+          reject(err)
+        }
+      })
+    })
+  }
+
 }
 
 
