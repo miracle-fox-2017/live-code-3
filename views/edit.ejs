@@ -37,22 +37,23 @@ div {
 <h3>Using CSS to style an HTML Form</h3>
 
 <div>
-  <form action="/edit/<%=dataMovies.id%>" method="post" >
+  <form action="/movies/edit/<%=dataMovies.id%>" method="post" >
     <label for="fname">name</label>
     <input type="text" id="fname" name="name" value="<%=dataMovies.name%>">
 
     <label for="lname">released_year</label>
-    <input type="text" id="lname" name="released_year" value="<%=dataMovies.released_year%>">
+    <input type="text" id="lname" name=released_year value="<%=dataMovies.released_year%>">
 
     <label for="country">Genre</label>
     <select id="country" name="genre">
       <option value="comedy">comedy</option>
       <option value="drama">Drama</option>
+      <option value="action">Action</option>
       <option value="horor">Horor</option>
     </select>
 
     <label for="lname">prodHouseId</label>
-    <input type="text" id="lname" value="<%=dataMovies.prodHouseId%>" name="prodHouseId">
+    <input type="text" id="lname" value="<%=dataMovies.prodHouseId%>" name=prodHouseId>
 
     <input type="submit" value="Submit">
   </form>

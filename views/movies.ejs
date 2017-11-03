@@ -13,7 +13,7 @@
     <th>name</th>
     <th>released year</th>
     <th>genre</th>
-    <th>prodHouse</th>
+    <th>Production House</th>
     <th>edit</th>
 
   </tr>
@@ -24,9 +24,9 @@
     <td><%=item.name%></td>
     <td><%=item.released_year%></td>
     <td><%=item.genre%></td>
-    <td><%=item.prodHouseId%></td>
+    <td><%=item.prodHouse%></td>
     <td>
-      <a href="/edit/<%=item.id%>">Edit</a>
+      <a href="/movies/edit/<%=item.id%>">Edit</a>
     </td>
     <%})%>
   </tr>
