@@ -1,20 +1,16 @@
 const express = require('express')
 const app = express();
 var bodyParser = require('body-parser')
+app.set('view engine', 'ejs');
 
-var ejs = require('ejs'),
-
-app.get('/', function (req, res) {
-  //res.render('movies')
-  res.send('Halaman Movies')
+app.get('/movies', function (req, res) {
+  // res.send('Hello World!')
+  res.render('movies')
 })
-
 
 app.get('/prodHouses', function (req, res) {
-  res.render('Halaman Prod')
-  //res.send('Halaman Prod')
+  res.render('prodHouses')
 })
-
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
