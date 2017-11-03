@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>movie - edit</title>
+  </head>
+  <body>
+    <form class="" method="post">
+      <input type="text" name="name" value="<%= rows[0].name%>" placeholder="name movie">
+      <input type="text" name="year" value="<%= rows[0].released_year%>" placeholder="release year">
+      <input type="text" name="genre" value="<%= rows[0].genre%>" placeholder="genre">
+      <select class="" name="nameProd">
+          <option value="">Select</option>
+        <% data.forEach(dataProd=>{%>
+        <% if(rows[0].prodId == dataProd.id ){ %>
+          <option value="<%= dataProd.id%>" selected><%= dataProd.name_prodHouse %></option>
+        <%}else{%>
+          <option value="<%= dataProd.id%>"><%= dataProd.name_prodHouse %></option>
+
+        <% }});%>
+      </select>
+      <input type="submit" name="submit" value="submit">
+    </form>
+  </body>
+</html>
