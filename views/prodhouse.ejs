@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Halaman Prod. House</title>
+</head>
+<body>
+	<h1>Halaman Prod. House</h1>
+
+	<table border="1">
+		<tr>
+			<th>Nama</th>
+			<th>City</th>
+		</tr>
+
+		<% allProdHouse.forEach( function(house, index) { %>
+			<tr>
+				<td><%= house.name_prodHouse %></td>
+				<td><%= house.origin_city %></td>
+			</tr>
+		<% }); %>
+	</table>
+</body>
+</html>

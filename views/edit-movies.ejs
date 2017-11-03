@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Edit</title>
+</head>
+<body>
+	
+	<form action="/movies/edit/" method="POST">
+		  <input type="hidden" id="id" name="id" value="<%= movie.id %>">
+  		<input type="text" id="name" name="name" placeholder="name" value="<%= movie.name %>">
+  		<input type="text" id="released_year" name="released_year" placeholder="released_year" value="<%= movie.released_year %>">
+  		<select name="genre" id="genre">
+  			<option value="action">action</option>
+  			<option value="comedy">comedy</option>
+  			<option value="drama">drama</option>
+  			<option value="horor">horor</option>
+  		</select>
+  		<select name="prodHouseId" id="prodHouseId">
+  			<% allHouse.forEach( function(house, index) { %>
+    			<tr>
+    				<option <%= (typeof movie != 'undefined' && movie != null && movie.prodHouseId == house.id ? 'selected' : '' ) %> 
+              value="<%= house.id %>"><%= house.name_prodHouse %>    
+            </option>
+    			</tr>
+		  <% }); %>
+  		</select>
+
+  		<input type="submit" value="Kirim">
+	</form>
+</body>
+</html>

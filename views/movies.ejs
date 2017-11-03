@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Halaman Movies</title>
+</head>
+<body>
+	<h1>Halaman Movies</h1>
+	
+	<table border="1">
+		<tr>
+			<th>Movie</th>
+			<th>Released Year</th>
+			<th>Genre</th>
+			<th>Production House</th>
+			<th>Action</th>
+		</tr>
+		
+		<% allMovie.forEach( function(movie, index) { %>
+			<tr>
+				<td><%= movie.movie_name %></td>
+				<td><%= movie.released_year %></td>
+				<td><%= movie.genre %></td>
+				<td><%= movie.name_prodHouse %></td>
+				<td>
+					<a href="/movies/edit/<%= movie.movie_id %>">Edit</a>
+				</td>
+			</tr>
+		<% }); %>
+	</table>
+</body>
+</html>
