@@ -5,16 +5,30 @@
     <title></title>
   </head>
   <body>
-    <%=rows%>
-    <h2>Movie</h2>
-      <table>
-        <thead>
-          <td>NAME</td>
-          <td>REALESE</td>
-          <td>GENRE</td>
-          <td>Production House</td>
-        </thead>
-
-      </table>
+    <h1>Halaman Movie</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Movie</th>
+          <th>Released Year</th>
+          <th>genre</th>
+          <th>Production House</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataMovie.forEach(movie => { %>
+          <tr>
+            <td><%= movie.id %></td>
+            <td><%= movie.name %></td>
+            <td><%= movie.released_year %></td>
+            <td><%= movie.genre %></td>
+            <td><%= movie.name_prodHouse %></td>
+            <td><a href="/movies/edit/<%= movie.id %>">Edit</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </body>
 </html>
