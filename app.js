@@ -3,9 +3,7 @@ const app = express();
 // const ejs = require('ejs');
 const bodyParser = require('body-parser');
 
-// Router
-// const movieRouter = require('./routers/movie-route');
-// app.use('/movies', movieRouter); 
+
 
 const sqlite3 = require('sqlite3').verbose()
 let db = new sqlite3.Database('./db/movie.db');
@@ -19,34 +17,38 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 })
 
-app.get('/movies', function (req, res) {
-	let sql = `SELECT Movies.id as movie_id, Movies.name as movie_name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse FROM Movies LEFT JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`;
+// Router
+const movieRouter = require('./routers/movie-route');
+app.use('/movies', movieRouter); 
 
-  	db.all(sql, (err, rows) => {
-  		res.render('movies', { allMovie: rows });
-  	})	
-})
+// app.get('/movies', function (req, res) {
+// 	let sql = `SELECT Movies.id as movie_id, Movies.name as movie_name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse FROM Movies LEFT JOIN ProductionHouses ON Movies.prodHouseId = ProductionHouses.id`;
 
-app.get('/movies/edit/:id', function (req, res) {
-	let data = req.params;
+//   	db.all(sql, (err, rows) => {
+//   		res.render('movies', { allMovie: rows });
+//   	})	
+// })
 
-	let sql = `SELECT * FROM Movies WHERE id = ${data.id};`;
+// app.get('/movies/edit/:id', function (req, res) {
+// 	let data = req.params;
 
-  	db.get(sql, (err, rows) => {
-  		db.all('select * from ProductionHouses', (err, allProd) => {
-  			res.render('edit-movies', {movie: rows, allHouse: allProd});
-  		});
-  	})	
+// 	let sql = `SELECT * FROM Movies WHERE id = ${data.id};`;
+
+//   	db.get(sql, (err, rows) => {
+//   		db.all('select * from ProductionHouses', (err, allProd) => {
+//   			res.render('edit-movies', {movie: rows, allHouse: allProd});
+//   		});
+//   	})	
 	
-})
+// })
 
-app.post('/movies/edit/', function (req, res) {
-	let data = req.body;
+// app.post('/movies/edit/', function (req, res) {
+// 	let data = req.body;
 
-	db.run(`UPDATE Movies SET name = "${data.name}", released_year = "${data.released_year}", genre = "${data.genre}", prodHouseId = "${+data.prodHouseId}" WHERE id = ${data.id}`, (err, alldata) => {
-		res.redirect('/movies');
-	});
-})
+// 	db.run(`UPDATE Movies SET name = "${data.name}", released_year = "${data.released_year}", genre = "${data.genre}", prodHouseId = "${+data.prodHouseId}" WHERE id = ${data.id}`, (err, alldata) => {
+// 		res.redirect('/movies');
+// 	});
+// })
 
 
 
