@@ -2,30 +2,47 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Edit Movie</title>
 </head>
 <body>
 <form action="index.html" method="post">
-    <table>
+    <input type="hidden" name="id" value="<%=movie[0].id%>">
+    <table border="1">
         <tr>
             <td>Movie</td>
-            <td><input type="text" name="movie" value="<%=data.name%>"></td>
+            <td><input type="text" name="movie" value="<%=movie[0].name%>"></td>
         </tr>
         <tr>
             <td>Released</td>
-            <td><input type="text" name="released" value="<%=data.released_year%>"></td>
+            <td><input type="text" name="released" value="<%=movie[0].released_year%>"></td>
         </tr>
         <tr>
             <td>Genre</td>
-            <td><input type="text" name="genre" value="<%=data.genre%>"></td>
+            <td>
+                <select name="genre">
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horor">Horor</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td>Production House</td>
             <td>
                 <select name="prodHouse">
-                    <option value=""></option>
+                    <%prod.map((value)=>{
+                        if(value.id === movie[0].prodHouseId){%>
+                            <option value="<%=value.id%>" selected><%=value.name_prodHouse%></option>
+                        <%}else{%>
+                            <option value="<%=value.id%>"><%=value.name_prodHouse%></option>
+                        <%}
+                    })%>
                 </select>
             </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update"></td>
         </tr>
     </table>
 </form>
