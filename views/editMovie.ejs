@@ -2,32 +2,81 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
+
   </head>
   <body>
-    <h1>Edit Movie</h1>
-    <!-- name varchar(50),
-    //             released_year INTEGER,
-    //             genre varchar(10),
-    //             prodHouseId INTEGER REFERENCES ProductionHouses(id)); -->
-    <form action="/movies/edit/<%=datamovie.id%>" method="get">
-      Name: <input type="text" name="name" value="<%=datamovie.name%>"><br>
-      Release Year: <input type="text" name="year" value="<%=datamovie.released_year%>"><br>
-      Genre: <select name="genre">
-                <option value="action">Action</option>
-                <option value="comedy">Comedy</option>
-                <option value="drama">Drama</option>
-                <option value="horor">Horor</option>
-              </select>
-              <br>
-            Production House :
-             <select name="prodHouseId">
+    <section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+    <h1 class="title">Edit Movie</h1>
+    <!--
+    name varchar(50),
+    released_year INTEGER,
+    genre varchar(10),
+    prodHouseId INTEGER REFERENCES ProductionHouses(id));
+    -->
+    <form action="/movie/edit/<%=datamovie.id%>" method="post">
+      <label class="label">Name :</label>
+      <input class="input" type="text" name="name" value="<%=datamovie.name%>"><br>
 
-               <option
-               <%if(datamovie.id )%>
-               value="<%=datamovie.id%>"><%=datamovie.nameProd%></option>
-            </select>
-      <input type="submit" value="Submit">
+      <label class="label">Release Year :</label>
+      <input class="input" type="text" name="year" value="<%=datamovie.released_year%>"><br>
+      <label class="label">Genre:</label>
+          <span class="select" >
+            <select class="select" name="genre">
+              <%let genre = datamovie.genre%>
+              <option value="action"
+              <%if(genre === 'action'){%>
+                selected
+              <%} else %>
+              >Action</option>
+              <option value="comedy"
+              <%if(genre === 'comedy'){%>
+                selected
+              <%} else %>
+              >Comedy</option>
+              <option value="drama"
+              <%if(genre === 'drama'){%>
+                selected
+              <%} else %>
+              >Drama</option>
+              <option value="horor"
+              <%if(genre === 'horor'){%>
+                selected
+              <%}%>
+              >Horor</option>
+              </select>
+          </span>
+        <br>
+        <label class="label">Production House :</label>
+            <span class="select" >
+              <select name="prodHouseId">
+                <%dataHouses.forEach(dataHouse=>{%>
+                  <option
+                  value="<%=dataHouse.id%>"
+                  <%if(datamovie.prodHouseId===dataHouse.id){%>
+                    selected
+                  <%}%>
+                  ><%=dataHouse.name_prodHouse%></option>
+                <%})%>
+
+             </select>
+            </span>
+      <br/>
+      <br/>
+      <div class="field is-grouped">
+        <p class="control">
+      <input class="button is-info" type="submit" value="Edit">
+    </a>
+      <p class="control">
+        <a href="/movie" class="button is-light">
+          Batal
+        </a>
+      </p>
+    </div>
     </form>
 
   </body>

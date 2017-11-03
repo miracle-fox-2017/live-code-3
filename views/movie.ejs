@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css">
   </head>
   <body>
-
+    <section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
     <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
       <ul>
         <li><a href="/">Home</a></li>
@@ -16,14 +18,14 @@
       </ul>
     </nav>
     <h1 class="title">Halaman Movies</h1>
-    <table class="table">
+    <table class="table is-bordered is-striped is-narrow is-fullwidth">
       <thead>
       <tr>
          <th>Name</th>
          <th>Release Year</th>
          <th>Genre</th>
          <th>Production House</th>
-
+         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -33,10 +35,13 @@
              <td><%=dataMovie.released_year%></td>
              <td><%=dataMovie.genre%></td>
              <td><%=dataMovie.nameProd%></td>
-             <td><a href="/movie/edit/<%=dataMovie.id%>">Edit</a></td>
+             <td>
+                  <span class="icon has-text-info">
+                    <a class="is-link" href="/movie/edit/<%=dataMovie.id%>">Edit</a>
+                  </span>
+            </td>
           </tr>
         <%})%>
-
       </tbody>
     </table>
   </body>
