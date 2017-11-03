@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post">
+        <input type="text" name="name" value="<%= dataMovies.name %>">
+        <input type="text" name="year" value="<%= dataMovies.released_year %>">
+        <select name="genre">
+            <option value="dataMovies.gender"><%= dataMovies.gender %></option>
+        </select>
+        <select name="prod">
+            <% 
+            
+            dataProd.forEach((rowsProd)=>{ 
+                
+                if(rowsProd.id == dataMovies.prodHouseId){
+            
+            %>
+                    <option value="<%= rowsProd.id %>" selected><%= rowsProd.name_prodHouse %></option>
+
+            <%
+
+                }else{
+
+            %>
+
+                    <option value="<%= rowsProd.id %>">
+                        <%= rowsProd.name_prodHouse %>
+                    </option>
+
+            <%
+
+                }
+                
+             }) %>
+        </select>
+        <input type="submit" value="simpan">
+    </form>    
+</body>
+</html>
