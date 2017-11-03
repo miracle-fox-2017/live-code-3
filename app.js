@@ -1,54 +1,55 @@
-//your code here
-const express = require('express')
+const express = require('express');
 const app = express();
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./db/movie.db');
-
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.set('views', './views') // specify the views directory
-app.set('view engine', 'ejs') // register the template engine
+app.set('view engine', 'ejs');
 
+const Movie = require('./router/movie')
+const Produc = require('./router/product')
+app.use('/', Movie);
+app.use('/', Produc)
 
-app.get('/movies', function(req,res){
-	let selectAll = `SELECT Movies.id, Movies.name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse
-					 FROM Movies
-					 LEFT JOIN
-					 ProductionHouses 
-					 on ProductionHouses.id = Movies.prodHouseId`
-	db.all(selectAll, function(err, allMovies){
-		console.log(allMovies)
-		res.render('movies', {data : allMovies})
-	})				 
+app.get('/movies/edit/:id', function(req,res) {
+  let query = `SELECT * FROM Movies WHERE id = ${req.params.id}`;
+  let queryProdHouse = `SELECT * FROM ProductionHouses`
+
+  db.all(query, function(errMovies,movie) {
+    if(!errMovies) {
+      if(movie.length > 0) {
+        db.all(queryProdHouse, function(errProdHouse,rowsProdHouse) {
+          if(!errProdHouse) {
+            res.render('editMovie', {movie: movie[0], dataProdHouse: rowsProdHouse})
+          } else {
+            res.send(errProdHouse)
+          }
+        })
+      }
+    } else {
+      res.send(errMovies)
+    }
+  })
 })
 
-app.get('/prodHouses', function(req,res){
-	let selectAll = `SELECT * FROM ProductionHouses`
-	db.all(selectAll, function(err, allProduct){
-		res.render('productionHouse', {data : allProduct})
-	})
+app.post('/movies/edit/:id', function(req,res) {
+  let query = `UPDATE Movies
+               SET name = '${req.body.movie}',
+                 released_year = '${req.body.released_year}',
+                 genre = '${req.body.genre}',
+                 prodHouseId = ${req.body.prodHouseId}
+               WHERE id = ${req.params.id}`
+  db.run(query, function(err) {
+    if(!err) {
+      res.redirect('/movies');
+    } else {
+      res.send(err)
+    }
+  })
 })
 
 
-app.get('/movies/edit/:id', function(req,res){
-	let selectAll = `SELECT Movies.id, Movies.name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse
-					 FROM Movies
-					 LEFT JOIN
-					 ProductionHouses 
-					 on ProductionHouses.id = Movies.prodHouseId`
-	db.all(selectAll, function(err, allProduct){
-		for(let i =0 ; i <allProduct.length-1 ; i++){
-			if(allProduct[i].id == req.params.id){
-				console.log(allProduct[i])
-				res.render('edit', {data : allProduct[i]})
-			}
-		} 
-	})
+app.listen(3000, function() {
+  console.log(`Are you looking for me? 3000`);
 })
-
-app.listen(3000, function(){
-	console.log(3000)
-})	
