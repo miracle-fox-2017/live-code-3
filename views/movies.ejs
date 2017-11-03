@@ -6,5 +6,29 @@
   </head>
   <body>
     <h1>HALAMAN Movies</h1>
+
+    <table>
+  <tr>
+    <th>ID</th>
+    <th>name</th>
+    <th>released year</th>
+    <th>genre</th>
+    <th>prodHouse</th>
+    <th>edit</th>
+
+  </tr>
+      <%dataMovies.forEach(item =>{%>
+  <tr>
+
+    <td><%=item.id%></td>
+    <td><%=item.name%></td>
+    <td><%=item.released_year%></td>
+    <td><%=item.genre%></td>
+    <td><%=item.prodHouseId%></td>
+    <td>
+      <a href="/edit/<%=item.id%>">Edit</a>
+    </td>
+    <%})%>
+  </tr>
   </body>
 </html>
