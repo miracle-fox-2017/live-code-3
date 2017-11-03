@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit</title>
+  </head>
+  <body>
+    <form action="/movies/edit/<%=rows[0].id%>" method="post">
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Released Year</th>
+          <th>Genre</th>
+          <th>Production House</th>
+        </tr>
+          <%rows.forEach((row) => { %>
+            <input type="hidden" name="id" value="<%=rows[0].id%>">
+            <input type="hidden" name="prodID" value="<%=rows[0].prodID%>">
+            <tr>
+            <td><input type="text" name="name" value="<%=row.name%>"></td>
+            <td><input type="text" name="released_year" value="<%=row.released_year%>"></td>
+            <td><select name="genre">
+            <%if (row.genre === "action") {%>
+              <option value="action" selected>Action</option>
+              <option value="comedy">Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="horor">horor</option>
+            <%} else if (row.genre === "comedy") {%>
+              <option value="action">Action</option>
+              <option value="comedy" selected>Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="horor">horor</option>
+            <%} else if (row.genre === "drama") {%>
+              <option value="action">Action</option>
+              <option value="comedy">Comedy</option>
+              <option value="drama" selected>Drama</option>
+              <option value="horor">horor</option>
+            <%} else if (row.genre === "horor") {%>
+              <option value="action">Action</option>
+              <option value="comedy" >Comedy</option>
+              <option value="drama">Drama</option>
+              <option value="horor" selected>Horor</option>
+            <%}%>
+                </select></td>
+            <td><select name="name_prodHouse">
+            <%prodHouses.forEach((prodHouse) => { %>
+              <%if (row.name_prodHouse === prodHouse.name_prodHouse) {%>
+              <option value="<%=prodHouse.id%>" selected><%=prodHouse.name_prodHouse%></option>
+              <%} else {%>
+              <option value="<%=prodHouse.id%>"><%=prodHouse.name_prodHouse%></option>
+              <%}%>
+            <%})%>
+            </td>
+            </tr>
+          <%})%>
+          <tr>
+            <td colspan="4" align="right"><input type="submit" value="Edit"></td>
+          </tr>
+      </table>
+    </form>
+    
+  </body>
+</html>

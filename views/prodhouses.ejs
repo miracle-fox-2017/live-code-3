@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Production Houses</title>
+  </head>
+  <body>
+    <table>
+      <%rows.forEach((row) => { %>
+        <tr>
+        <td><%=row.name_prodHouse%><td>
+        <td><%=row.origin_city%><td>
+        </tr>
+      <%})%>
+    </table>
+  </body>
+</html>
