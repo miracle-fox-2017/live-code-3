@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> movies</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td>name</td>
+        <td>release</td>
+        <td>genre</td>
+        <td>prodHouse Name</td>
+      </tr>
+      <tr>
+        <% rowsMovies.forEach(function(list){ %>
+        <tr>
+          <td> <%= list.name %></td>
+          <td> <%= list.released_year %></td>
+          <td> <%= list.genre %></td>
+          <td> <%= list.name_prodHouse %></td>
+        </tr>
+        <% })%>
+      </tr>
+    </table>
+  </body>
+</html>
