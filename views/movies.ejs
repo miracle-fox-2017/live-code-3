@@ -1,0 +1,30 @@
+<%-include('./partials/header')%>
+
+
+
+<h2>halaman movies</h2>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Released Year</th>
+        <th>Genre</th>
+        <th>Production House</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%movies.forEach(movie =>{%>
+      <tr>
+        <td><%=movie.name%></td>
+        <td><%=movie.released_year%></td>
+        <td><%=movie.genre%></td>
+        <td><%=movie.name_prodHouse%></td>
+        <td><a href="/movies/edit/<%=movie.id%>">Edit</a></td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+
+<%-include('./partials/footer')%>
