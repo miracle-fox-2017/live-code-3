@@ -6,6 +6,21 @@
 </head>
 <body>
 <h3>Halaman Prod. House</h3>
-
+<table>
+	<thead>
+		<td>ID</td>
+		<td>Name</td>
+		<td>Origin City</td>
+	</thead>
+	<tbody>
+		<%prodHouses.forEach(prodHouse=>{%>
+		<tr>
+			<td><%=prodHouse.id%></td>
+			<td><%=prodHouse.name_prodHouse%></td>
+			<td><%=prodHouse.origin_city%></td>
+		</tr>
+		<%})%>
+	</tbody>
+</table>
 </body>
 </html>
