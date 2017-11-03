@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Movie</title>
+</head>
+
+<body>
+    <header>
+        <h3>Halaman Movie</h3>
+    </header>
+
+    <form action="/movies/edit/<%= dataMovie.id%>" method="POST">
+        Name :
+        <input type="text" name="name" value="<%= dataMovie.name%>" /> Year :
+        <input type="text" name="year" value="<%= dataMovie.released_year%>" />
+
+        <select name="genre">
+            <option value="">
+       Hard Cord Action 
+        </option>
+        <option> Comedy
+        </option>
+        <option>
+            Drama
+        </option>
+        <option>Horor</option>
+
+       </select>
+
+        <select>
+            <% dataProdHouse.forEach((ph)=>{%>
+                <option>
+               
+           </option>
+           <%})%>
+           
+       </select>
+
+
+
+    </form>
+</body>
+
+</html>

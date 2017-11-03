@@ -1,9 +1,41 @@
 <html>
-    <head>
 
-    </head>
+<head>
+    <title>Production House</title>
+</head>
 
-    <body>
-        Halaman Production House
-    </body>
+<body>
+    <header>
+        <h3>Halaman Production House</h3>
+    </header>
+
+    <table>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Origin City
+            </th>
+        </tr>
+        <% dataProdHouse.forEach((ph)=>{%>
+            <tr>
+                <td>
+                    <%= ph.id%>
+                </td>
+                <td>
+                    <%= ph.name_prodHouse%>
+                </td>
+                <td>
+                    <%= ph.origin_city%>
+                </td>
+            </tr>
+            <%})%>
+
+    </table>
+</body>
+
 </html>
