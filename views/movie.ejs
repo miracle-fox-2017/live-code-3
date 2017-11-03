@@ -7,4 +7,30 @@
   <body>
     <h1>Halaman Movies</h1>
   </body>
+  <table border="1px">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Movie</th>
+        <th>Released Year</th>
+        <th>Genre</th>
+        <th>Production House</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dataMovies.forEach(data => { %>
+        <tr>
+          <td><%= data.id %></td>
+          <td><%= data.name %></td>
+          <td><%= data.released_year %></td>
+          <td><%= data.genre %></td>
+          <td><%= data.prodHouse %></td>
+          <td>
+            <a href="/movies/edit/<%= data.id %>">Edit</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </html>

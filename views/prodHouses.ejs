@@ -7,4 +7,26 @@
   <body>
     <h1>Halaman Prod. House</h1>
   </body>
+  <table border="1px">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% dataProductions.forEach(data => { %>
+        <tr>
+          <td><%= data.id %></td>
+          <td><%= data.name_prodHouse %></td>
+          <td><%= data.origin_city %></td>
+          <!-- <td> -->
+            <!-- <a href="/prodHouses/edit/<%= data.id %>"></a> -->
+          <!-- </td> -->
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </html>
