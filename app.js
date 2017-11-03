@@ -1,35 +1,73 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/movie.db');
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
 
-app.set('view engine', 'ejs')
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
-app.get('/movies', function(req, res){
-  db.all(`SELECT Movies.name, Movies.released_year, Movies.genre, ProductionHouses.name_prodHouse FROM Movies JOIN ProductionHouses ON Movies.prodHouseID = ProductionHouses.id`, function(dataMovies){
-    res.render('movies', {dataMovies:dataMovies))
+const movies = require('./models/movies')
+const prod = require('./models/prodHouses')
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+app.set('view engine', 'ejs');
+
+app.get('/movies', function(req,res) {
+  let query = `SELECT M.*, P.name_prodHouse
+               FROM Movies AS M
+               LEFT JOIN ProductionHouses AS P
+               ON P.id = M.prodHouseId`
+
+  db.all(query, function(err,rowsMovie) {
+    if(!err) {
+      res.render('movie', {dataMovie: rowsMovie});
+    } else {
+      res.send(err)
+    }
   })
 })
 
-app.get('/movies/edit/:id', function(req, res){
-  db.each(``)
-  res.render('movieedit')
-})
+app.get('/movies/edit/:id', function(req,res) {
+  let query = `SELECT * FROM Movies WHERE id = ${req.params.id}`;
+  let queryProdHouse = `SELECT * FROM ProductionHouses`
 
-app.get('/prodHouses', function(req, res){
-  db.all(`SELECT * FROM ProductionHouses `, function(dataHouses){
-    console.log(dataHouse);
-    res.render('prodHouses', {dataHouses:dataHouses})
+  db.all(query, function(errMovies,movie) {
+    if(!errMovies) {
+      if(movie.length > 0) {
+        db.all(queryProdHouse, function(errProdHouse,rowsProdHouse) {
+          if(!errProdHouse) {
+            res.render('editMovie', {movie: movie[0], dataProdHouse: rowsProdHouse})
+          } else {
+            res.send(errProdHouse)
+          }
+        })
+      }
+    } else {
+      res.send(errMovies)
+    }
   })
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.post('/movies/edit/:id', function(req,res) {
+  movies.update(req.body, req.params.id, function(err)) {
+      res.redirect('/movies');
+    } else {
+      res.send(err)
+    }
+  })
 })
 
+app.get('/prodHouses', function(req,res){
+  prod.findAll(function(err,rowsProdHouse) {
+    if(!err) {
+      res.render('prodHouse', {dataProdHouse: rowsProdHouse});
+    } else {
+      res.send(err)
+    }
+  })
+})
+
+app.listen(3000, function() {
+  console.log(`Are you looking for me? 3000`);
+})
