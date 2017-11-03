@@ -5,19 +5,24 @@
     <title></title>
   </head>
   <body>
-    <table>
-  <tr>
-    <th>Name</th>
-    <th>Released Year</th>
-    <th>Genre</th>
-  </tr>
-
-  <%rows.forEach((el)=>{%>
-  <tr>
-    <td ><%=el.name %> </td>
-    <td> <%=el.released_year %> </td>
-    <td> <%=el.genre %> </td>
-  </tr>
-  <%})%>
+    <h1>Halaman Prod. House</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Production House</th>
+          <th>Origin City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataProdHouse.forEach(prodHouse => { %>
+          <tr>
+            <td><%= prodHouse.id %></td>
+            <td><%= prodHouse.name_prodHouse %></td>
+            <td><%= prodHouse.origin_city%></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </body>
 </html>
