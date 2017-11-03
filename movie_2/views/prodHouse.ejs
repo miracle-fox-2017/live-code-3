@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Halaman Prod. House</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Production House</th>
+          <th>Origin City</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataProdHouse.forEach(prodHouse => { %>
+          <tr>
+            <td><%= prodHouse.id %></td>
+            <td><%= prodHouse.name_prodHouse %></td>
+            <td><%= prodHouse.origin_city%></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>

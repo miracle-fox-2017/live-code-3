@@ -1,4 +1,23 @@
-let query =  `SELECT * FROM ProductionHouses`
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db/movie.db')
 
-// Sesi 2 (30 menit)
-// - Tampilkan data prodHouse yang terdapat pada database movie.db, tuliskan di halaman prodHouse yang telah kamu buat sebelumnya dalam bentuk tabel. Tampilkan data nama, city.
+
+
+
+class Movies {
+
+  static findAll(callback){
+    let query = `SELECT Movies.id,Movies.released_year,Movies.genre,ProductionHouses.name_prodHouse FROM Movies INNER JOIN ProductionHouses ON ProductionHouses.id = Movies.prodHouseId`;
+    return new Promise();
+      db.all(query(err,rows){
+        if(err){
+          callback(err,null)
+        }
+        else{
+          callback(null,rows)
+        }
+      })
+}
+
+
+module.exports = Movies;
