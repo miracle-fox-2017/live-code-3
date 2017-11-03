@@ -10,12 +10,17 @@
       <input type="hidden" name="id" value="<%= movies[0].id %>">
       <br><input type="text" name="name" value="<%= movies[0].name %>">
       <br><input type="text" name="released_year" value="<%= movies[0].released_year %>">
-      <br> <select>
+      <br> <select name="genre">
             <option value="action">Action</option>
             <option value="comedy">Comedy</option>
             <option value="drama">Drama</option>
             <option value="horor">Horor</option>
           </select> 
+      <br><select name="prodHouseId">
+        <% ph.forEach(p=>{ %>
+          <option value="<%= p.id %>"><%= p.name_prodHouse %></option>
+        <% }) %>
+      </select>
       <br><input type="SUBMIT" name="" value="SEND">
     </form>
   </body>
