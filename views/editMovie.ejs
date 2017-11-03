@@ -6,7 +6,7 @@
 </head>
 <body>
 <h3>Edit Movie</h3>
-<form action="/movies/edit/<%=movie.id%>">
+<form action="/movies/edit/<%=movie.id%>" method="post">
   name:<br>
   <input type="text" name="name" value="<%=movie.name%>">
   <br>
@@ -14,7 +14,26 @@
   <input type="text" name="year" value="<%=movie.released_year%>">
   <br>
   Genre:<br>
-  <input type="text" name="genre" value="<%=movie.genre%>">
+  <select name="genre">
+  <%genre.forEach(gen=>{%>
+  <%if(gen === movie.genre){%>
+  	<option value="gen" selected><%=gen%></option>
+  <%}else{%>
+  	<option value="gen"><%=gen%></option>
+  <%}%>
+  <%})%>
+	</select> 
+  <br>
+  Production House:<br>
+  <select name="prodHouse">
+  <%prodHouses.forEach(ph=>{%>
+  <%if(ph.id === movie.prodHouseId){%>
+  	<option value="<%=ph.id%>" selected><%=ph.name_prodHouse%></option>
+  <%}else{%>
+  	<option value="<%=ph.id%>"><%=ph.name_prodHouse%></option>
+  <%}%>
+  <%})%>
+	</select> 
   <br><br>
   <input type="submit" value="Submit">
 </form> 
