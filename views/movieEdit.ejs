@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="/movies/edit/<%= dataMovies.id %>" method="post">
+      <label for="">Movie</label><br>
+      <input type="text" name="name" value="<%= dataMovies.name %>"><br>
+      <label for="">Released Year</label><br>
+      <input type="text" name="released_year" value="<%= dataMovies.released_year %>"><br>
+      <label for="">Genre</label><br>
+      <select class="" name="genre">
+        <option value="action" <%= dataMovies.genre == "action" ? "selected" : "" %>>action</option>
+        <option value="comedy" <%= dataMovies.genre == "comedy" ? "selected" : "" %>>comedy</option>
+        <option value="drama" <%= dataMovies.genre == "drama" ? "selected" : "" %>>drama</option>
+        <option value="horor" <%= dataMovies.genre == "horor" ? "selected" : "" %>>horor</option>
+      </select><br>
+      <label for="">Production House</label><br>
+      <select class="" name="prodHouseId">
+        <option value=1 <%= dataMovies.prodHouseId == 1 ? "selected" : "" %>>Paramount</option>
+        <option value=2 <%= dataMovies.prodHouseId == 2 ? "selected" : "" %>>Walt Disney Pictures</option>
+        <option value=3 <%= dataMovies.prodHouseId == 3 ? "selected" : "" %>>Pixar</option>
+        <option value=4 <%= dataMovies.prodHouseId == 4 ? "selected" : "" %>>DreamWorks Studios</option>
+      </select><br>
+      <br>
+      <input type="submit" name="" value="Submit">
+    </form>
+  </body>
+</html>
