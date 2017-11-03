@@ -27,7 +27,7 @@ app.get('/movies', function (req, res) {
 
 app.get('/movies/edit/:id', function (req, res) {
 	let sql = `SELECT * FROM Movies WHERE id = ${req.params.id};`;
-	
+
   	db.get(sql, (err, rows) => {
   		res.render('edit-movies', {movie: rows});
   	})	
@@ -44,6 +44,6 @@ app.get('/prodHouses', function (req, res) {
   // res.render('prodhouse')
 })
 
-app.listen(3000, function () {
+app.listen(3001, function () {
   console.log('Example app listening on port 3000!')
 })
