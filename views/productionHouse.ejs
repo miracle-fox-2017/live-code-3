@@ -6,5 +6,18 @@
   </head>
   <body>
     <h1>Halaman Prod. House</h1>
+    <table>
+      <tr>
+        <th>nama</th>
+        <th>city</th>
+      </tr>
+        <%for(var i = 0; i < ph.length; i++) {%>
+          <tr>
+            <td><%=ph[i].name_prodHouse%></td>
+            <td><%=ph[i].origin_city%></td>
+            <td><a href="/prodHouses/<%=ph[i].id%>">edit</a></td>
+          </tr>
+          <%}%>
+    </table>
   </body>
 </html>
