@@ -6,6 +6,18 @@
     <title>Production House</title>
 </head>
 <body>
-    Halaman Prod. House
+    <h1>Halaman Prod. House</h1>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>City</td>
+        </tr>
+        <%prodRows.map((value)=>{%>
+        <tr>
+            <td><%=value.name_prodHouse%></td>
+            <td><%=value.origin_city%></td>
+        </tr>
+        <%})%>
+    </table>
 </body>
 </html>
