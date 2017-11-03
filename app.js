@@ -1,43 +1,86 @@
-//your code here
-const express = require('express')
-const app = express()
-// const Router       = require('router')
-//
-// const router = Router()
+// const sqlite3 = require('sqlite3').verbose();
+// const db = new sqlite3.Database('./db/movie.db');
 
-const bodyParser = require('body-parser')
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
-
-// set the view engine to ejs
 app.set('view engine', 'ejs');
 
-// use res.render to load up an ejs view file
-
-// index page
-app.get('/', function(req, res) {
-    res.render('index.ejs');
-});
-
-// about page
-app.get('/movies', function(req, res) {
-    res.render('movies.ejs');
-});
-
-
-app.get('/prodHouses', function(req, res) {
-    res.render('prodHouse.ejs');
-});
-
-// app.get('/', function (req, res) {
-//   res.send('Hello World!')
+// app.get('/movies', function(req,res) {
+//   let query = `SELECT M.*, P.name_prodHouse
+//                FROM Movies AS M
+//                LEFT JOIN ProductionHouses AS P
+//                ON P.id = M.prodHouseId`
+//
+//   db.all(query, function(err,rowsMovie) {
+//     if(!err) {
+//       res.render('movie', {dataMovie: rowsMovie});
+//     } else {
+//       res.send(err)
+//     }
+//   })
 // })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+let prodHouse = require('./routers/prodHouse.js');
+app.use('/prodHouses', prodHouse);
+
+let movies = require('./routers/movie.js');
+app.use('/movies', movies);
+
+//
+// app.get('/movies/edit/:id', function(req,res) {
+//   let query = `SELECT * FROM Movies WHERE id = ${req.params.id}`;
+//   let queryProdHouse = `SELECT * FROM ProductionHouses`
+//
+//   db.all(query, function(errMovies,movie) {
+//     if(!errMovies) {
+//       if(movie.length > 0) {
+//         db.all(queryProdHouse, function(errProdHouse,rowsProdHouse) {
+//           if(!errProdHouse) {
+//             res.render('editMovie', {movie: movie[0], dataProdHouse: rowsProdHouse})
+//           } else {
+//             res.send(errProdHouse)
+//           }
+//         })
+//       }
+//     } else {
+//       res.send(errMovies)
+//     }
+//   })
+// })
+//
+// app.post('/movies/edit/:id', function(req,res) {
+//   let query = `UPDATE Movies
+//                SET name = '${req.body.movie}',
+//                  released_year = '${req.body.released_year}',
+//                  genre = '${req.body.genre}',
+//                  prodHouseId = ${req.body.prodHouseId}
+//                WHERE id = ${req.params.id}`
+//   db.run(query, function(err) {
+//     if(!err) {
+//       res.redirect('/movies');
+//     } else {
+//       res.send(err)
+//     }
+//   })
+// })
+
+// app.get('/prodHouses', function(req,res){
+//   let query = `SELECT * FROM ProductionHouses`
+//
+//   db.all(query, function(err,rowsProdHouse) {
+//     if(!err) {
+//       res.render('prodHouse', {dataProdHouse: rowsProdHouse});
+//     } else {
+//       res.send(err)
+//     }
+//   })
+// })
+
+app.listen(3000, function() {
+  console.log(`Are you looking for me? 3000`);
 })

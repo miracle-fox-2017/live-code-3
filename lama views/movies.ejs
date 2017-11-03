@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>prodHouse</title>
+  <title>movies</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,34 +16,36 @@
       </div>
       <ul class="nav navbar-nav">
         <li><a href="/">HOME</a></li>
-        <li><a href="/movies">MOVIES</a></li>
-        <li class="active"><a href="/prodHouses">PRODUCTION HOUSE</a></li>
+        <li class="active"><a href="/movies">MOVIES</a></li>
+        <li><a href="/prodHouses">PRODUCTION HOUSE</a></li>
       </ul>
     </div>
   </nav>
   <div class="container">
-    <h2>prodHouse</h2>
+    <h2>MOVIES</h2>
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
             <th>ID</th>
             <th>NAME</th>
-            <th>CITY</th>
+            <th>YEAR</th>
+            <th>GENRE</th>
+            <th>PRODHOUSE</th>
           </tr>
         </thead>
         <tbody>
-          <%rowsProdHouse.forEach (row=> {%>
+          <%dataMovie.forEach (row=> {%>
             <tr>
               <td><%= row.id %></td>
-              <td><%= row.name_prodHouse %></td>
-              <td><%= row.origin_city %></td>
+              <td><%= row.name %></td>
+              <td><%= row.released_year %></td>
+              <td><%= row.genre %></td>
+              <td><%= row.prodHouseId %></td>
             </tr>
             <% }) %>
           </tbody>
         </table>
-      </div>
-
       </div>
 
 
