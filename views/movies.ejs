@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Halaman Movies</h1>
-
+	
 	<table border="1">
 		<tr>
 			<th>Nama</th>
@@ -18,12 +18,12 @@
 		
 		<% allMovie.forEach( function(movie, index) { %>
 			<tr>
-				<td><%= movie.name %></td>
+				<td><%= movie.movie_name %></td>
 				<td><%= movie.released_year %></td>
 				<td><%= movie.genre %></td>
 				<td><%= movie.name_prodHouse %></td>
 				<td>
-					<a href="/movies/edit/<%= movie.id %>">Edit</a>
+					<a href="/movies/edit/<%= movie.movie_id %>">Edit</a>
 				</td>
 			</tr>
 		<% }); %>
