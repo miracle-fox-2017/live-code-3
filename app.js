@@ -1,9 +1,9 @@
 //your code here
 const express = require('express')
 const app = express()
-const Router       = require('router')
-
-const router = Router()
+// const Router       = require('router')
+//
+// const router = Router()
 
 const bodyParser = require('body-parser')
 
@@ -21,17 +21,17 @@ app.set('view engine', 'ejs');
 
 // index page
 app.get('/', function(req, res) {
-    res.render('views/index');
+    res.render('index.ejs');
 });
 
 // about page
 app.get('/movies', function(req, res) {
-    res.render('views/movies');
+    res.render('movies.ejs');
 });
 
 
 app.get('/prodHouses', function(req, res) {
-    res.render('views/prodHouse');
+    res.render('prodHouse.ejs');
 });
 
 // app.get('/', function (req, res) {
