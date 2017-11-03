@@ -29,7 +29,9 @@ app.get('/movies/edit/:id', function (req, res) {
 	let sql = `SELECT * FROM Movies WHERE id = ${req.params.id};`;
 
   	db.get(sql, (err, rows) => {
-  		res.render('edit-movies', {movie: rows});
+  		db.all('select * from ProductionHouses', (err, allProd) => {
+  			res.render('edit-movies', {movie: rows, allHouse: allProd});
+  		});
   	})	
 	
 })
