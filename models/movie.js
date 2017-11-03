@@ -5,7 +5,7 @@ const db = new sqlite3.Database('db/movie.db')
 class Movie {
     static findAll() {
         return new Promise((resolve, reject) => {
-            let query = `select * from Movies m left join ProductionHouses p on m.prodHouseId = p.id`
+            let query = `select m.id, m.name, m.released_year, m.genre, p.name_prodHouse  from Movies m left join ProductionHouses p on m.prodHouseId = p.id`
             db.all(query, function (err, rows) {
                 if (err) {
                     reject(err)
@@ -32,7 +32,7 @@ class Movie {
 
     static updateData(id, newData) {
         return new Promise((resolve, reject) => {
-            let query = `update Movies set name = ${newData.name}, released_year = name = ${newData.released_year}, prodHouseId = ${newData.prodHouseId}`
+            let query = `update Movies set name = "${newData.name}", released_year = ${newData.year}, genre = "${newData.genre}", prodHouseId = ${newData.prodHouseId} where id = ${id}`
             db.run(query, function (err) {
                 if (err) {
                     reject(err)

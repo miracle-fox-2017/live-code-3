@@ -11,6 +11,7 @@
 
     <table>
         <tr>
+            <th>ID</th>
             <th>Movie</th>
             <th>Released Year</th>
             <th>Genre</th>
@@ -21,6 +22,9 @@
 
 
             <tr>
+                <td>
+                    <%= movie.id%>
+                </td>
                 <td>
                     <%= movie.name%>
                 </td>
@@ -34,7 +38,7 @@
                     <%= movie.name_prodHouse%>
                 </td>
                 <td>
-                    <a href="/movies/edit/ <%= movie.id%>">Edit</a>
+                    <a href="/movies/edit/<%= movie.id%>">Edit</a>
                 </td>
             </tr>
             <%})%>

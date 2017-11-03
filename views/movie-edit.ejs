@@ -9,35 +9,85 @@
         <h3>Halaman Movie</h3>
     </header>
 
-    <form action="/movies/edit/<%= dataMovie.id%>" method="POST">
+    <form action="/movies/edit/<%=dataMovie.id%>" method="POST">
         Name :
         <input type="text" name="name" value="<%= dataMovie.name%>" /> Year :
         <input type="text" name="year" value="<%= dataMovie.released_year%>" />
 
+
         <select name="genre">
-            <option value="">
-       Hard Cord Action 
-        </option>
-        <option> Comedy
-        </option>
-        <option>
-            Drama
-        </option>
-        <option>Horor</option>
+            <% if(dataMovie.genre == 'comedy') {%>
+                <option value="comedy" selected>
+                    Comedy
+                </option>
+                <option value="action">
+                      Action
+                    </option>
+                    <option value="horor">
+                            Horor
+                         </option>
+                         <option value="drama">
+                                Drama
+                             </option>
+            <%} else if(dataMovie.genre == 'drama') {%>
+                <option value="comedy">
+                    Comedy
+                </option>
+                <option value="action">
+                      Action
+                    </option>
+                    <option value="horor">
+                            Horor
+                         </option>
+                         <option value="drama" selected>
+                                Drama
+                             </option>
+            <%} else if(dataMovie.genre == 'action') {%>
+                <option value="comedy">
+                    Comedy
+                </option>
+                <option value="action" selected>
+                      Action
+                    </option>
+                    <option value="horor">
+                            Horor
+                         </option>
+                         <option value="drama">
+                                Drama
+                             </option>
+            <%} else if(dataMovie.genre == 'horor') {%>
+                <option value="comedy">
+                    Comedy
+                </option>
+                <option value="action">
+                      Action
+                    </option>
+                    <option value="horor" selected>
+                            Horor
+                         </option>
+                         <option value="drama">
+                                Drama
+                             </option>
+            <%}%>
 
-       </select>
+            </select>
 
-        <select>
-            <% dataProdHouse.forEach((ph)=>{%>
-                <option>
+        <select name="prodHouseId"> 
+            <% dataProdHouse.forEach((ph)=> { 
+                if(ph.id == dataMovie.prodHouseId){
+                    %>
                
-           </option>
-           <%})%>
-           
-       </select>
+                <option value="<%= ph.id%>" selected>
+                        <%= ph.name_prodHouse%>
+                </option>
+                <% }else{%>
+                    <option value="<%= ph.id%>">
+                            <%= ph.name_prodHouse%>
+                    </option>
+                <%}})%> 
+        </select>
 
-
-
+        <input type="submit" value="Save">
     </form>
 </body>
 
