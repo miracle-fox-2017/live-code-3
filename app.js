@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express();
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/movies.db')
@@ -8,35 +11,31 @@ const db = new sqlite3.Database('./db/movies.db')
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-// Tampilkan data Movies yang terdapat pada database movie.db, tuliskan di halaman Movie yang telah kamu buat sebelumnya dalam bentuk tabel. Tampilkan data Movie, Released Year, Genre, Production House (Gunakan Left Join atau tanpa Join dengan melakukan manipulasi objek)
-
-
-app.get('/movies', function (req, res){
-  let query = `SELECT * FROM Movies`
-  // res.send('Halaman Movies')
-  res.render('movies', {msg : 'ini halaman movies'})
+app.get('/prodHouse', function (req, res){
+  let query = `SELECT * FROM prodHouse`
+  db.all(query, (err, rows)=>{
+    if(err){
+      res.send(err)
+    }
+    else{
+      res.render('prodHouses', {data : data})
+    }
+  })
 })
 
-app.get('/prodHouses', function(res, res){
-  // let query = `SELECT * FROM Movies`
-  let query =  `SELECT * FROM ProductionHouses JOIN movies on movies.released_year, movies  `;
+app.get('/movies', function (req, res) {
+    let query = `SELECT Movies.id,Movies.released_year,Movies.genre,ProductionHouses.name_prodHouse FROM Movies INNER JOIN ProductionHouses ON ProductionHouses.id = Movies.prodHouseId`;
+    db.all(query,function(err,dataMovies){
 
-
-      db.run(query, (err,rows) =>{
-        if(err){
-          console.log(err);
+        if(!err){
+            res.render('movies', { dataMovies });
+        }else{
+            res.send(err);
         }
-        else{
-          res.render('prodHouses', {rows:rows})
-        }
-    })
-  // res.render('prodHouses', {msg : 'ini halaman prodHouses'})
-})
 
+    });
 
-
-
-
+});
 
 
 app.listen(3000, function (){
