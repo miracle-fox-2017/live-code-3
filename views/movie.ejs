@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Movie</title>
+  </head>
+  <body>
+    <h1>movie</h1>
+    <table border="1px">
+      <thead>
+        <tr>
+          <th>nama</th>
+          <th>release year</th>
+          <th>genre</th>
+          <th>prod house</th>
+          <th>option</th>
+        </tr>
+      </thead>
+      <% rows.forEach(data=>{%>
+      <tbody>
+        <tr>
+          <td><%= data.name %></td>
+          <td><%= data.released_year %></td>
+          <td><%= data.genre %></td>
+          <td><%= data.name_prodHouse %></td>
+          <td><a href="/movies/edit/:id">edit</a></td>
+        </tr>
+      </tbody>
+      <%})%>
+    </table>
+
+
+    <br>
+    <br>
+    <form class="" method="post">
+      <input type="text" name="name" value="" placeholder="name movie">
+        <input type="text" name="year" value="" placeholder="release year">
+          <input type="text" name="genre" value="" placeholder="genre">
+            <input type="text" name="nameprod" value="" placeholder="name prod">
+
+    </form>
+  </body>
+</html>
