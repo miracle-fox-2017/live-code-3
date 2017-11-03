@@ -5,13 +5,39 @@
     <title></title>
   </head>
   <body>
-    <form class="" action="index.html" method="post">
+    <form class="" action="/movies/edit/<%=movies[0].id%>" method="post">
       <input type="input" name="name" value="<%=movies[0].name%>">
       <input type="input" name="released_year" value="<%=movies[0].released_year%>">
-      <input type="input" name="genre" value="<%=movies[0].genre%>">
+      <select name="genre">
+        <%if(movies[0].genre == "action") {%>
+          <option value="action" selected>action</option>
+          <option value="comedy">comedy</option>
+          <option value="drama">drama</option>
+          <option value="horor">horor</option>
+        <%} else if(movies[0].genre == "comedy") {%>
+          <option value="action">action</option>
+          <option value="comedy" selected>comedy</option>
+          <option value="drama">drama</option>
+          <option value="horor">horor</option>
+        <%} else if(movies[0].genre == "drama") {%>
+          <option value="action">action</option>
+          <option value="comedy">comedy</option>
+          <option value="drama" selected>drama</option>
+          <option value="horor">horor</option>
+        <%} else if(movies[0].genre == "horor") {%>
+          <option value="action">action</option>
+          <option value="comedy">comedy</option>
+          <option value="drama">drama</option>
+          <option value="horor" selected>horor</option>
+        <%}%>
+      </select>
       <select class="" name="prodHouseId">
         <%for(var i = 0; i < ph.length; i++) {%>
-        <option value="<%=ph[i].id%>"><%=ph[i].name_prodHouse%></option>
+          <%if(ph[i].id == movies[0].prodHouseId) {%>
+            <option value="<%=ph[i].id%>" selected><%=ph[i].name_prodHouse%></option>
+          <%} else {%>
+            <option value="<%=ph[i].id%>"><%=ph[i].name_prodHouse%></option>
+          <%}%>
         <%}%>
       </select>
       <input type="submit" value="submit">
