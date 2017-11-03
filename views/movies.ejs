@@ -8,5 +8,21 @@
     </head>
     <body>
         <h1>Halaman Movies</h1>
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Release</th>
+            </tr>
+            <tr><%rows.forEach(data=>{%>
+                <td><%=data.id%></td>
+                <td><%=data.name%></td>
+                <td><%=data.release_year%></td>
+           
+            
+            </tr>
+            <%})%>
+          </table>
     </body>
+
 </html>
