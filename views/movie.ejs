@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <title>Movie</title>
+</head>
+
+<body>
+    <header>
+        <h3>Halaman Movie</h3>
+    </header>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Movie</th>
+            <th>Released Year</th>
+            <th>Genre</th>
+            <th>Production House</th>
+            <th>Edit</th>
+        </tr>
+        <% dataMovies.forEach((movie)=>{%>
+
+
+            <tr>
+                <td>
+                    <%= movie.id%>
+                </td>
+                <td>
+                    <%= movie.name%>
+                </td>
+                <td>
+                    <%= movie.released_year%>
+                </td>
+                <td>
+                    <%= movie.genre%>
+                </td>
+                <td>
+                    <%= movie.name_prodHouse%>
+                </td>
+                <td>
+                    <a href="/movies/edit/<%= movie.id%>">Edit</a>
+                </td>
+            </tr>
+            <%})%>
+
+    </table>
+</body>
+
+</html>
