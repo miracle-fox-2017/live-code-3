@@ -4,7 +4,7 @@ var db = new sqlite3.Database('./db/movie.db');
 class Prodhouse{
   constructor(){}
   
-  getProd(cb){
+  static getProd(cb){
     let q = `SELECT * FROM ProductionHouses`
     db.all(q, (err,rows)=>{
       // res.render('prodhouse', {ph: rows})
