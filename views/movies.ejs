@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Halaman Movies</h1>
+    <table>
+      <tr>
+        <th>movies</th>
+        <th>released year</th>
+        <th>Genre</th>
+        <th>ProductionHouses</th>
+        <th>ProductionHouses name</th>
+      </tr>
+      <%for(var i = 0; i < movies.length; i++) {%>
+        <tr>
+          <td><%=movies[i].name%></td>
+          <td><%=movies[i].released_year%></td>
+          <td><%=movies[i].genre%></td>
+          <td><%=movies[i].prodHouseId%></td>
+          <td><%=movies[i].name_prodHouse%></td>
+          <td><a href="/movies/edit/<%=movies[i].id%>">edit</a></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
