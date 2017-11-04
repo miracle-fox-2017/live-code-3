@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Movies</title>
+</head>
+<body>
+    <p>Halaman Movies</p>
+    <table border="1">
+        <tr>
+            <td>No</td>
+            <td>Movie</td>
+            <td>Released Year</td>
+            <td>Genre</td>
+            <td>Production House</td>
+            <td>Action</td>
+        </tr>
+        <% 
+        
+        let no = 1;
+
+         dataMovies.forEach((rows)=>{ 
+            
+        %>
+            <tr>
+                <td>
+                    <%= no %>
+                </td>
+                <td>
+                    <%= rows.name %>
+                </td>
+                <td>
+                    <%= rows.released_year %>
+                </td>
+                <td>
+                    <%= rows.genre %>
+                </td>
+                <td>
+                    <%= rows.name_prodHouse %>
+                </td>
+                <td>
+                    <a href="/movies/edit/<%= rows.id %>">Edit</a>
+                </td>
+            </tr>
+            <%
+        
+            no++;
+        
+            }) 
+            
+        %>
+    </table>
+</body>
+</html>
