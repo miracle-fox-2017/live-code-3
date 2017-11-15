@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Movies</title>
+  </head>
+  <body>
+    <h1>Halaman Movies</h1>
+    <table>
+      <% for(let i = 0; i < dataMovies.length; i++){%>
+        <tr>
+          <td><%=dataMovies[i].name%></td>
+          <td><%=dataMovies[i].released_year%></td>
+          <td><%=dataMovies[i].genre%></td>
+          <td><%=dataMovies[i].name_prodHouse%></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>

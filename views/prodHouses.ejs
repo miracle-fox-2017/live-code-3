@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<% console.log(dataHouses) %>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Prod Houses</title>
+  </head>
+  <body>
+    <h1>Halaman Prod. House</h1>
+    <table>
+      <% for(let i = 0; i < dataHouses.length; i++){%>
+        <tr>
+          <td><%=dataHouses[i].name_prodHouse%></td>
+          <td><%=dataHouses[i].origin_city%></td>
+        </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
