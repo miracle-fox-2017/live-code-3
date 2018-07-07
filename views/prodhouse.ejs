@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ProdHouse</title>
+  </head>
+  <body>
+    <h1>HALAMAN ProdHouse</h1>
+
+    <table>
+  <tr>
+    <th>ID</th>
+    <th>name_prodHouse</th>
+    <th>origin</th>
+    <th>edit</th>
+
+  </tr>
+      <%dataProd.forEach(item =>{%>
+  <tr>
+      <td><%=item.id%></td>
+    <td><%=item.name_prodHouse%></td>
+    <td><%=item.origin_city%></td>
+    <td>
+      <a href="/edit/<%=item.id%>">Edit</a>
+    </td>
+    <%})%>
+  </tr>
+  </body>
+</html>
