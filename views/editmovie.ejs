@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>edit movie</h1>
+    <form class="" action="index.html" method="post">
+      <input type="hidden" name="id" value="<%= movies[0].id %>">
+      <br><input type="text" name="name" value="<%= movies[0].name %>">
+      <br><input type="text" name="released_year" value="<%= movies[0].released_year %>">
+      <br> <select name="genre">
+            <option value="action">Action</option>
+            <option value="comedy">Comedy</option>
+            <option value="drama">Drama</option>
+            <option value="horor">Horor</option>
+          </select> 
+      <br><select name="prodHouseId">
+        <% ph.forEach(p=>{ %>
+          <option value="<%= p.id %>"><%= p.name_prodHouse %></option>
+        <% }) %>
+      </select>
+      <br><input type="SUBMIT" name="" value="SEND">
+    </form>
+  </body>
+</html>
