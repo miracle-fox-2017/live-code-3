@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Halaman Prod. House</title>
+</head>
+<body>
+    <p>Halaman ProdHouse</p>
+    <table>
+        <tr>
+            <td>No</td>
+            <td>Nama</td>
+            <td>City</td>
+        </tr>
+        <%
+
+        let no = 1;
+
+        rows.forEach((rows)=>{
+
+        %>
+        <tr>
+            <td><%= no %></td>
+            <td><%= rows.name_prodHouse %></td>
+            <td><%= rows.origin_city %></td>
+        </tr>
+        <%
+
+            no++;
+
+            })
+
+        %>
+    </table>
+</body>
+</html>
