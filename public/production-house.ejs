@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Production House</title>
+</head>
+<body>
+    <h1>Halaman Prod. House</h1>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>City</td>
+        </tr>
+        <%prodRows.map((value)=>{%>
+        <tr>
+            <td><%=value.name_prodHouse%></td>
+            <td><%=value.origin_city%></td>
+        </tr>
+        <%})%>
+    </table>
+</body>
+</html>
